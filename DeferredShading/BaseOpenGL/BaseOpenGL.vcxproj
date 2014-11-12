@@ -114,14 +114,10 @@
     <ClInclude Include="BasicRenderableObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ambientMap.frag" />
-    <None Include="ambientMap.vert" />
     <None Include="deferredShading.frag" />
     <None Include="deferredShading.vert" />
-    <None Include="postProcess.frag" />
-    <None Include="postProcess.vert" />
-    <None Include="simple.frag" />
-    <None Include="simple.vert" />
+    <None Include="directionnalLightShader.frag" />
+    <None Include="directionnalLightShader.vert" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

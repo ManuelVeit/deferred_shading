@@ -56,3 +56,14 @@ void MultipleRenderTarget::Desactivate()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glViewport(0, 0, m_Width, m_Height);
 }
+
+void MultipleRenderTarget::ActivateForShading()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	for(unsigned int i = 0; i < TEXTURE_COUNT; ++i)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, m_TextureTarget[TEXTURE_POSITION + i]);
+	}
+}

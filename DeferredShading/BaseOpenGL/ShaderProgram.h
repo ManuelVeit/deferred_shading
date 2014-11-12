@@ -33,10 +33,8 @@ public:
 	void startUseProgram()						{ glUseProgram(_programId); }
 	void stopUseProgram()						{ glUseProgram(0);	}
 
-    static ShaderProgram* createStdShader();
-	static ShaderProgram* createAmbientMapShader();
-	static ShaderProgram* createPostProcessShader();
-	static ShaderProgram* createDeferredShadingShader();
+	static ShaderProgram* createGBufferBuilderShader();
+	static ShaderProgram* createDirectionnalLightShader();
 
 	void initAttribute();
 

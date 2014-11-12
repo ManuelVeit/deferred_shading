@@ -61,7 +61,7 @@ void initialiseObjects()
 	// creation du VBO
 	g_MainObject = new BasicRenderableObject();
 
-	g_MainObject->initShader( ShaderProgram::createDeferredShadingShader() );
+	g_MainObject->initShader( ShaderProgram::createGBufferBuilderShader() );
 	g_MainObject->init();
 	g_MainObject->loadMtl("Models/sibenik_blenderexport.mtl");
 	g_MainObject->loadObj("Models/sibenik_blenderexport.obj");
@@ -72,7 +72,7 @@ void initialiseObjects()
 
 	g_FullScreenQuad = new BasicRenderableObject();
 
-	g_FullScreenQuad->initShader( ShaderProgram::createPostProcessShader() );
+	g_FullScreenQuad->initShader( ShaderProgram::createDirectionnalLightShader() );
 	g_FullScreenQuad->init();
 	g_FullScreenQuad->generateFullScreenQuad();
 	g_FullScreenQuad->fillInVBO();
@@ -105,14 +105,23 @@ void display()
 	glDepthMask(GL_FALSE);
 	glDisable(GL_DEPTH_TEST);
 
-	// Show G-Buffer
+	// Draw to the color buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
+	// Blend all the light contribution together
+	glEnable(GL_BLEND);
+   	glBlendEquation(GL_FUNC_ADD);
+   	glBlendFunc(GL_ONE, GL_ONE);
+
+	g_MultipleRenderTarget->ActivateForShading();
+
+	// Render directionnal light
+
+	// Show G-Buffer thumbnails
 	g_MultipleRenderTarget->ActivateForReading();
 
-	// Details
 	GLsizei thumbnailWidth = g_width / 4;
 	GLsizei thumbnailHeight = g_height / 4;
 	GLsizei halfWidth = (GLsizei)(thumbnailWidth / 2.0f);

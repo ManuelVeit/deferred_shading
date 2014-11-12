@@ -119,32 +119,29 @@ bool ShaderProgram::detachGeometryShader()
 }
 
 
-/*!
-    \fn ShaderProgram::createStdShader()
- */
-ShaderProgram* ShaderProgram::createStdShader()
+ShaderProgram* ShaderProgram::createDirectionnalLightShader()
 {
-	printGLErrors("createStdShader::start");
+	printGLErrors("createDirectionnalLightShader::start");
 
 	//Création du vertex et du fragment shader
 	Shader* vertexShader = new ::Shader(GL_VERTEX_SHADER);
-	if(!vertexShader->compileShader("..\\BaseOpenGL\\simple.vert")) {
+	if(!vertexShader->compileShader("..\\BaseOpenGL\\directionnalLightShader.vert")) {
 		delete vertexShader;
 
 		return NULL;
 	}
 
-	printGLErrors("createStdShader::after_vertex_shader_compilation");
+	printGLErrors("createDirectionnalLightShader::after_vertex_shader_compilation");
 
 	Shader* fragmentShader = new ::Shader(GL_FRAGMENT_SHADER);
-	if(!fragmentShader->compileShader("..\\BaseOpenGL\\simple.frag")) {
+	if(!fragmentShader->compileShader("..\\BaseOpenGL\\directionnalLightShader.frag")) {
 		delete vertexShader;
 		delete fragmentShader;
 
 		return NULL;
 	}
 
-	printGLErrors("createStdShader::after_fragment_shader_compilation");
+	printGLErrors("createDirectionnalLightShader::after_fragment_shader_compilation");
 
 	//Création du programme shader
 	ShaderProgram* pgm = new ::ShaderProgram();
@@ -157,79 +154,9 @@ ShaderProgram* ShaderProgram::createStdShader()
 	return pgm;
 }
 
-ShaderProgram* ShaderProgram::createAmbientMapShader()
+ShaderProgram* ShaderProgram::createGBufferBuilderShader()
 {
-	printGLErrors("createStdDiffuseShader::start");
-
-	//Création du vertex et du fragment shader
-	Shader* vertexShader = new ::Shader(GL_VERTEX_SHADER);
-	if(!vertexShader->compileShader("..\\BaseOpenGL\\ambientMap.vert")) {
-		delete vertexShader;
-
-		return NULL;
-	}
-
-	printGLErrors("createStdDiffuseShader::after_vertex_shader_compilation");
-
-	Shader* fragmentShader = new ::Shader(GL_FRAGMENT_SHADER);
-	if(!fragmentShader->compileShader("..\\BaseOpenGL\\ambientMap.frag")) {
-		delete vertexShader;
-		delete fragmentShader;
-
-		return NULL;
-	}
-
-	printGLErrors("createStdDiffuseShader::after_fragment_shader_compilation");
-
-	//Création du programme shader
-	ShaderProgram* pgm = new ::ShaderProgram();
-
-	//Attachement des shaders au programme
-	pgm->attachVertexShader(vertexShader);
-	pgm->attachFragmentShader(fragmentShader);
-	pgm->linkProgram();
-
-	return pgm;
-}
-
-ShaderProgram* ShaderProgram::createPostProcessShader()
-{
-	printGLErrors("createStdDiffuseShader::start");
-
-	//Création du vertex et du fragment shader
-	Shader* vertexShader = new ::Shader(GL_VERTEX_SHADER);
-	if(!vertexShader->compileShader("..\\BaseOpenGL\\postProcess.vert")) {
-		delete vertexShader;
-
-		return NULL;
-	}
-
-	printGLErrors("createStdDiffuseShader::after_vertex_shader_compilation");
-
-	Shader* fragmentShader = new ::Shader(GL_FRAGMENT_SHADER);
-	if(!fragmentShader->compileShader("..\\BaseOpenGL\\postProcess.frag")) {
-		delete vertexShader;
-		delete fragmentShader;
-
-		return NULL;
-	}
-
-	printGLErrors("createStdDiffuseShader::after_fragment_shader_compilation");
-
-	//Création du programme shader
-	ShaderProgram* pgm = new ::ShaderProgram();
-
-	//Attachement des shaders au programme
-	pgm->attachVertexShader(vertexShader);
-	pgm->attachFragmentShader(fragmentShader);
-	pgm->linkProgram();
-
-	return pgm;
-}
-
-ShaderProgram* ShaderProgram::createDeferredShadingShader()
-{
-	printGLErrors("createStdDiffuseShader::start");
+	printGLErrors("createGBufferBuilderShader::start");
 
 	//Création du vertex et du fragment shader
 	Shader* vertexShader = new ::Shader(GL_VERTEX_SHADER);
@@ -239,7 +166,7 @@ ShaderProgram* ShaderProgram::createDeferredShadingShader()
 		return NULL;
 	}
 
-	printGLErrors("createStdDiffuseShader::after_vertex_shader_compilation");
+	printGLErrors("createGBufferBuilderShader::after_vertex_shader_compilation");
 
 	Shader* fragmentShader = new ::Shader(GL_FRAGMENT_SHADER);
 	if(!fragmentShader->compileShader("..\\BaseOpenGL\\deferredShading.frag")) {
@@ -249,7 +176,7 @@ ShaderProgram* ShaderProgram::createDeferredShadingShader()
 		return NULL;
 	}
 
-	printGLErrors("createStdDiffuseShader::after_fragment_shader_compilation");
+	printGLErrors("createGBufferBuilderShader::after_fragment_shader_compilation");
 
 	//Création du programme shader
 	ShaderProgram* pgm = new ::ShaderProgram();

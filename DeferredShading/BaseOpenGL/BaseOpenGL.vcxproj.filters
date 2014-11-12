@@ -68,28 +68,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="ambientMap.vert">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="ambientMap.frag">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="simple.frag">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="simple.vert">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="postProcess.frag">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="postProcess.vert">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
     <None Include="deferredShading.vert">
       <Filter>Fichiers de ressources</Filter>
     </None>
     <None Include="deferredShading.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="directionnalLightShader.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="directionnalLightShader.vert">
       <Filter>Fichiers de ressources</Filter>
     </None>
   </ItemGroup>

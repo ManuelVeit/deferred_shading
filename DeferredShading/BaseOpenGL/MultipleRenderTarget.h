@@ -25,6 +25,7 @@ public:
 	bool Create(GLuint width, GLuint height);
 	void ActivateForWriting()						{ glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_FrameBufferId); }
 	void ActivateForReading()						{ glBindFramebuffer(GL_READ_FRAMEBUFFER, m_FrameBufferId); }
+	void ActivateForShading();
 	void SetReadBuffer(GBufferTextureTarget target)	{ glReadBuffer(GL_COLOR_ATTACHMENT0 + target); }
 	void Desactivate();
 
